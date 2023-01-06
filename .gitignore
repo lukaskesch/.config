@@ -1,0 +1,8 @@
+*
+!*/
+!.gitignore
+!flameshot/**
+!karabiner/**
+!yabai/**
+!skhd/**
+.DS_Store
