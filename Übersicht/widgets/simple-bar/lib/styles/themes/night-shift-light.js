@@ -1,7 +1,7 @@
 export const theme = {
   name: "Night Shift Light",
   kind: "light",
-  main: "#fff",
+  // main: "#fff",
   mainAlt: "#98a8c5",
   minor: "#fff",
   red: "#e78482",
@@ -25,7 +25,7 @@ export const theme = {
   itemOuterMargin: "0 0 0 5px",
   hoverRing: "0 0 0 2px rgba(152, 168, 198, 0.5)",
   focusRing: "0 0 0 2px rgba(152, 168, 198, 0.5)",
-  lightShadow: "0 5px 10px rgba(0, 0, 0, 0.24)",
+  // lightShadow: "0 5px 10px rgba(0, 0, 0, 0.24)",
   transitionEasing: "cubic-bezier(0.4, 0, 0.2, 1)",
   clickEffect: "rgba(0, 0, 0, 0.15)",
 };

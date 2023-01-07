@@ -1,7 +1,8 @@
 export const theme = {
   name: "Night Shift Dark",
   kind: "dark",
-  main: "#1b222d",
+  // main: "#1b222d",
+  main: "#000",
   mainAlt: "#98a8c5",
   minor: "#39465e",
   red: "#e78482",
