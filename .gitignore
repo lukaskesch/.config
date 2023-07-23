@@ -7,4 +7,5 @@
 !skhd/**
 !iterm2/**
 !Übersicht/**
+!nvim/**
 .DS_Store
