@@ -257,7 +257,7 @@ vim.o.termguicolors = true
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set({'n', 'v'}, '<leader>tn', ':tabnew<cr>')
+vim.keymap.set({'n', 'v'}, '<leader>tn', ':tabnew | Telescope find_files<cr>')
 vim.keymap.set({'n', 'v'}, '<leader>tc', ':tabclose<cr>')
 vim.keymap.set({'n', 'v'}, '<leader>to', ':tabonly<cr>')
 vim.keymap.set({'n', 'v'}, '<leader>tm', ':tabmove ')
@@ -404,19 +404,20 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>lr', vim.lsp.buf.rename, '[r]ename')
+  nmap('<leader>la', vim.lsp.buf.code_action, '[a]ction')
+  nmap('<leader>lc', "<cmd>lua vim.lsp.codelens.run()<cr>", '[c]odelense')
+  nmap('<leader>lt', vim.lsp.buf.type_definition, '[t]ype definition')
+  nmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, '[s]ymbols')
+  nmap('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace [s]ymbols')
+  nmap('<leader>ld', vim.lsp.buf.hover, '[d]ocumentation')
+  nmap('<leader>li', "<cmd>LspInfo<cr>", '[i]nfo')
+  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -526,3 +527,20 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+--
+--
+
+
+function _G.ReloadConfig()
+  for name,_ in pairs(package.loaded) do
+    if name:match('^user') and not name:match('nvim-tree') then
+      package.loaded[name] = nil
+    end
+  end
+
+  dofile(vim.env.MYVIMRC)
+  vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+end
+
+vim.api.nvim_set_keymap("n", "<leader><CR>", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
