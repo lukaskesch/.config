@@ -544,3 +544,10 @@ function _G.ReloadConfig()
 end
 
 vim.api.nvim_set_keymap("n", "<leader><CR>", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
+-- greatest remap ever
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
+
+vim.opt.scrolloff = 10
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
