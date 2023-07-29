@@ -6,4 +6,6 @@ require('setups.telescope');
 require('setups.treesitter');
 require('setups.cmp');
 require('setups.lualine');
-
+require('setups.toggleterm');
+-- require('setups.indent_blankline');
+-- require('setups.dashboard');
