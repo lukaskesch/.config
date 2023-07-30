@@ -1,4 +1,7 @@
 return {
+  {
+    'windwp/nvim-ts-autotag',
+  },
   -- Rainbow Highlighting
   {
     "HiPhish/nvim-ts-rainbow2",

@@ -88,6 +88,7 @@ local mappings = {
     b = {
         name = "Buffers",
         h = { "<cmd>Telescope oldfiles<CR>", "prev. opend" },
+        n = { "<cmd>ene<CR>", "new buffer" },
     },
     c = {
         name = "Terminal",
@@ -99,6 +100,8 @@ local mappings = {
     f = {
         name = "Files",
         e = { "<cmd>Ex<CR>", "file explorer" },
+        n = { "<cmd>ene<CR>", "new file" },
+        r = { ":GMove " .. vim.api.nvim_buf_get_name(0) .. "", "rename file", silent = false }
     },
     g = {
         name = "Git",
@@ -129,16 +132,30 @@ local mappings = {
         c = { "<cmd>tabclose<CR>", "close tab" },
         e = { "<cmd>tabnew | Ex <CR>", "file explorer in new tab" },
         f = { ":tabnew | Telescope find_files<CR>", "search file in new tab" },
-        m = { ":tabmove ", "tab move" },
+        m = { ":tabmove ", "tab move", silent = false },
         n = { "<cmd>tabnew<CR>", "empty buffer in new tab" },
         o = { "<cmd>tabonly<CR>", "tab only" },
         t = { "<cmd>ToggleTerm direction=\"tab\" <CR>", "terminal in new tab" },
     },
 }
 
+vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { desc = '[p]revious hunk' })
+vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { desc = '[n]ext hunk' })
+vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'preview [h]unk' })
+vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = '[r]eset hunk' })
+vim.keymap.set('n', '<leader>gR', require('gitsigns').reset_buffer, { desc = '[R]eset buffer' })
+vim.keymap.set('n', '<leader>gB', require('gitsigns').blame_line, { desc = '[B]lame line' })
+vim.keymap.set('n', '<leader>gs', require('gitsigns').stage_hunk, { desc = '[s]tage hunk' })
+vim.keymap.set('n', '<leader>gu', require('gitsigns').undo_stage_hunk, { desc = '[u]ndo stage hunk' })
+vim.keymap.set('n', '<leader>gd', '<cmd>Gitsigns diffthis HEAD<cr>', { desc = '[d]iff' })
+vim.keymap.set('n', '<leader>gf', '<cmd>Telescope git_status<cr>', { desc = 'changed [f]iles' })
+vim.keymap.set('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', { desc = '[b]ranches' })
+vim.keymap.set('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', { desc = '[c]ommits' })
+vim.keymap.set('n', '<leader>gh', '<cmd>Telescope git_bcommits<cr>', { desc = '[h]istory of file' })
 
-vim.keymap.set( 't' , '<esc>', '<C-\\><C-n>', { silent = true })
-vim.keymap.set( 'n' , '<esc>', '<cmd>ToggleTerm<CR>', { silent = true })
+
+vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { silent = true })
+vim.keymap.set('n', '<esc>', '<cmd>ToggleTerm<CR>', { silent = true })
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -152,13 +169,26 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
-
--- greatest remap ever
+-- greatest remaps ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
+-- yank to and past from system clipboard
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>p", [["+p]])
+vim.keymap.set("n", "<leader>P", [["+P]])
+
+
+-- moving selected lines up and down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
