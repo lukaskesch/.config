@@ -1,3 +1,4 @@
+-- This checks if the plugin which-ke
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
     return
@@ -101,18 +102,19 @@ local mappings = {
         name = "Files",
         e = { "<cmd>Ex<CR>", "file explorer" },
         n = { "<cmd>ene<CR>", "new file" },
-        r = { ":GMove " .. vim.api.nvim_buf_get_name(0) .. "", "rename file", silent = false }
+        r = { ":GMove " .. vim.api.nvim_buf_get_name(0) .. "", "rename file", silent = false },
+        s = { "<cmd>w<CR>", "save file" },
     },
     g = {
         name = "Git",
-        f = { "<cmd>Telescope git_files<CR>", "find git files" },
     },
     s = {
         name = "Search",
         b = { "<cmd>Telescope buffers<CR>", "buffers" },
         c = { "<cmd>Telescope colorscheme<CR>", "colorscheme" },
         d = { "<cmd>Telescope diagnostics<CR>", "diagnostics" },
-        f = { "<cmd>Telescope find_files<CR>", "files" },
+        f = { "<cmd>Telescope git_files<CR>", "find git files" },
+        F = { "<cmd>Telescope find_files<CR>", "files" },
         g = { "<cmd>Telescope live_grep<CR>", "live grep" },
         h = { "<cmd>Telescope command_history<CR>", "command history" },
         H = { "<cmd>Telescope help_tags<CR>", "help tags" },
