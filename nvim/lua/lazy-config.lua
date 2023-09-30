@@ -20,7 +20,7 @@ require('lazy').setup({
 
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  -- 'tpope/vim-sleuth',
 
   --  The configuration is done below. Search for lspconfig to find it below.
 
