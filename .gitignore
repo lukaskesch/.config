@@ -8,4 +8,5 @@
 !iterm2/**
 !Übersicht/**
 !nvim/**
+!tmux/**
 .DS_Store
