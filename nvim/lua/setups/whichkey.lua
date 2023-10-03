@@ -149,7 +149,7 @@ vim.keymap.set('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', { desc = '[c
 vim.keymap.set('n', '<leader>gh', '<cmd>Telescope git_bcommits<cr>', { desc = '[h]istory of file' })
 
 
-vim.keymap.set("i", "<C-h>", "copilot#Accept()", {expr=true})
+vim.keymap.set("i", "<C-l>", "copilot#Accept()", {expr=true})
 vim.keymap.set("i", "<C-j>", "copilot#Next()", {expr=true})
 vim.keymap.set("i", "<C-k>", "copilot#Previous()", {expr=true})
 vim.keymap.set("i", "<C-h>", "copilot#Dismiss()", {expr=true})

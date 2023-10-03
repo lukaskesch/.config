@@ -5,6 +5,8 @@
 alias g='git'
 alias gs='git status'
 alias gc='git commit'
+alias ga='git add'
+alias gaa='git add --all'
 alias gac='git add --all && git commit -m'
 alias gpm='git push origin master'
 
