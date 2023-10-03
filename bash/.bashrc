@@ -3,8 +3,10 @@
 
 # Git aliases
 alias g='git'
+alias gs='git status'
 alias gc='git commit'
-alias gac='git add --all && git commit'
+alias gac='git add --all && git commit -m'
+alias gpm='git push origin master'
 
 
 # Search history
