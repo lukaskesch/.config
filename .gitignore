@@ -9,4 +9,5 @@
 !Übersicht/**
 !nvim/**
 !tmux/**
+!bash/**
 .DS_Store
