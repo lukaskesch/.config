@@ -1,6 +1,11 @@
 # .bashrc
 
-export BASH_CONF="bashrc"
+
+# Git aliases
+alias g='git'
+alias gc='git commit'
+alias gac='git add --all && git commit'
+
 
 # Search history
 fh() {
