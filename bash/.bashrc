@@ -36,7 +36,7 @@ tns() {
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(find ~/Documents/Programming -mindepth 1 -maxdepth 2 -type d | fzf)
+        selected=$(find ~/Documents/Programming ~/.config -mindepth 0 -maxdepth 2 -type d | fzf)
     fi
 
     selected_name=$(basename "$selected" | tr . _)

@@ -1,5 +1,9 @@
 # MacOS Dev Setup
 
+## Inspiration
+- [zsh setup](https://www.josean.com/posts/terminal-setup)
+- [yabai setup](https://www.josean.com/posts/yabai-setup)
+
 ## Keyboard remaps with Karabiner
 
 ## Package Manager
@@ -31,5 +35,27 @@ The `.bashrc` file contains custom aliases and functions
 ### NVIM
 
 ## Window Manager
+Installing:
+- `brew install koekeishiya/formulae/yabai`
+- `brew install koekeishiya/formulae/skhd`
 
+Starting:
+- `brew services start yabai`
+- `brew services start skhd`
 
+## Applications
+- Arc (Broswer)
+- Obsidian
+- Bartender (Menu Bar Management)
+- Cleanshot X 
+- Textsniper
+- flux
+- 1Password
+- AIDente
+- Alfred or Raycast
+- Goodnotes
+- Google Drive
+- NordVPN
+- Rectange
+- RapidAPI or Postman
+- Spotify

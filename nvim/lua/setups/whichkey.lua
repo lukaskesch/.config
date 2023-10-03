@@ -91,13 +91,6 @@ local mappings = {
         h = { "<cmd>Telescope oldfiles<CR>", "prev. opend" },
         n = { "<cmd>ene<CR>", "new buffer" },
     },
-    c = {
-        name = "Terminal",
-        f = { "<cmd>ToggleTerm direction=\"float\"<CR>", "float" },
-        h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "horizontal" },
-        t = { "<cmd>ToggleTerm <cr>", "toggle" },
-        v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "vertical" },
-    },
     f = {
         name = "Files",
         e = { "<cmd>Ex<CR>", "file explorer" },
@@ -155,6 +148,11 @@ vim.keymap.set('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', { desc = '[
 vim.keymap.set('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', { desc = '[c]ommits' })
 vim.keymap.set('n', '<leader>gh', '<cmd>Telescope git_bcommits<cr>', { desc = '[h]istory of file' })
 
+
+vim.keymap.set("i", "<C-h>", "copilot#Accept()", {expr=true})
+vim.keymap.set("i", "<C-j>", "copilot#Next()", {expr=true})
+vim.keymap.set("i", "<C-k>", "copilot#Previous()", {expr=true})
+vim.keymap.set("i", "<C-h>", "copilot#Dismiss()", {expr=true})
 
 vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { silent = true })
 vim.keymap.set('n', '<esc>', '<cmd>ToggleTerm<CR>', { silent = true })
