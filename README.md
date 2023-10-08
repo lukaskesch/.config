@@ -17,6 +17,8 @@
 
 - `brew install --cask iterm2`
 
+### fzf
+
 ### Oh My ZSH
 [install link](https://ohmyz.sh/#install)
 
@@ -33,6 +35,13 @@ The `.bashrc` file contains custom aliases and functions
 ### TMUX
 
 ### NVIM
+Plugins:
+- Treesitter (Syntax parser & highlither)
+- Telescope (Search UI)
+- Darkplus (Theme from VS Code)
+- LuaLine (Startusbar)
+- Copilot
+
 
 ## Window Manager
 Installing:
