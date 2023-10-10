@@ -1,5 +1,10 @@
 # .bashrc
 
+# Neovim
+alias n='nvim'
+alias nd='nvim .'
+alias vi='nvim'
+alias vim='nvim'
 
 # Git aliases
 alias g='git'
