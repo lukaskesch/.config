@@ -11,11 +11,6 @@ alias gac='git add --all && git commit -m'
 alias gpm='git push origin master'
 
 
-# Search history
-fh() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-}
-
 # cd to selected directory
 fd() {
   local dir
