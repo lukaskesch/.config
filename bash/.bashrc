@@ -1,5 +1,7 @@
 # .bashrc
 
+setopt nosharehistory
+
 # Neovim
 alias n='nvim'
 alias nd='nvim .'
