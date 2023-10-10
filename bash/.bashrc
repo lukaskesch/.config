@@ -8,7 +8,8 @@ alias gc='git commit'
 alias ga='git add'
 alias gaa='git add --all'
 alias gac='git add --all && git commit -m'
-alias gpm='git push origin master'
+alias gpo='git push origin '
+alias gpom='git push origin master'
 
 
 # cd to selected directory
