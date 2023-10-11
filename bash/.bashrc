@@ -11,12 +11,12 @@ alias vim='nvim'
 # Git aliases
 alias g='git'
 alias gs='git status'
-alias gc='git commit'
+alias gc='git commit -m'
 alias ga='git add'
 alias gaa='git add --all'
 alias gac='git add --all && git commit -m'
-alias gpo='git push origin '
-alias gpom='git push origin master'
+alias gpull='git pull'
+alias gpush='git push'
 
 
 # cd to selected directory
