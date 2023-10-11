@@ -10,4 +10,5 @@
 !nvim/**
 !tmux/**
 !bash/**
+!git/**
 .DS_Store
