@@ -3,8 +3,8 @@
 setopt nosharehistory
 
 # zsh
-alias reload='source ~/.zshrc'
-alias zshconfig="nvim ~/.zshrc"
+alias zsh-reload='source ~/.zshrc'
+alias zsh-config="nvim ~/.zshrc"
 
 # Neovim
 alias n='nvim'
@@ -70,6 +70,37 @@ tns() {
     fi
 }
 
+tmux-sessionizer () {
+    if [[ $# -eq 1 ]]; then
+        selected=$1
+    else
+        selected=$(find ~/work/builds ~/projects ~/ ~/work ~/personal ~/personal/yt -mindepth 1 -maxdepth 1 -type d | fzf)
+    fi
+
+    if [[ -z $selected ]]; then
+        exit 0
+    fi
+
+    selected_name=$(basename "$selected" | tr . _)
+    tmux_running=$(pgrep tmux)
+
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        tmux new-session -s $selected_name -c $selected
+        exit 0
+    fi
+
+    if ! tmux has-session -t=$selected_name 2> /dev/null; then
+        tmux new-session -ds $selected_name -c $selected
+    fi
+
+    tmux switch-client -t $selected_name
+}
+
+sc() {
+    source ~/.zshrc
+    tmux source-file ~/.config/tmux/tmux.conf
+}
+
 # Killing selected tmux session
 # tk () {
 #     local sessions
@@ -84,3 +115,14 @@ tns() {
 #     done
 # }
 #
+
+# With `read -a` you can get the keycodes of the pressed keys
+# Read `man zshzle` for more information about zle widgets
+
+# Both approaches are valid
+listFolders () { echo; ls; zle redisplay } 
+zle -N listFolders
+bindkey '^a' listFolders
+
+bindkey -s ^f "tmux-sessionizer\n"
+
