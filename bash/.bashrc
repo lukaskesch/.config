@@ -2,6 +2,10 @@
 
 setopt nosharehistory
 
+# zsh
+alias reload='source ~/.zshrc'
+alias zshconfig="nvim ~/.zshrc"
+
 # Neovim
 alias n='nvim'
 alias nd='nvim .'
@@ -11,12 +15,13 @@ alias vim='nvim'
 # Git aliases
 alias g='git'
 alias gs='git status'
+alias gd='git diff'
 alias gc='git commit -m'
 alias ga='git add'
 alias gaa='git add --all'
 alias gac='git add --all && git commit -m'
-alias gpull='git pull'
-alias gpush='git push'
+alias gpl='git pull'
+alias gps='git push'
 
 
 # cd to selected directory
