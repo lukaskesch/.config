@@ -55,16 +55,24 @@ Starting:
 ## Applications
 - Arc (Broswer)
 - Obsidian
-- Bartender (Menu Bar Management)
-- Cleanshot X 
-- Textsniper
-- flux
-- 1Password
-- AIDente
-- Alfred or Raycast
 - Goodnotes
 - Google Drive
+- 1Password
 - NordVPN
-- Rectange
-- RapidAPI or Postman
 - Spotify
+
+### Dev
+- RapidAPI or Postman
+- VS Code
+- IntelliJ
+- DataGrip
+
+### Utils
+- Cleanshot X 
+- Textsniper
+- Alfred or Raycast
+- Rectange
+- flux
+- AIDente
+- Bartender (Menu Bar Management)
+
