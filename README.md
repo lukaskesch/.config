@@ -30,7 +30,7 @@ Plugins:
 
 Own config file:
 Add the following line to the ~/.zshrc config file `source ~/.config/zsh/.zshrc`
-The `.bashrc` file contains custom aliases and functions 
+The `.zshrc` file contains custom aliases, functions, and keymaps
 
 ### TMUX
 
