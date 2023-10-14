@@ -1,10 +1,6 @@
-# .bashrc
+# .zshrc
 
 setopt nosharehistory
-
-# zsh
-alias zsh-reload='source ~/.zshrc'
-alias zsh-config="nvim ~/.zshrc"
 
 # Neovim
 alias n='nvim'
@@ -33,7 +29,7 @@ fd() {
 }
 
 # Searching tmux session or create new if non exists
-tfs() {
+tmux-find-session() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
   if [ $1 ]; then
     tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
@@ -41,47 +37,24 @@ tfs() {
   session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
 }
 
-# Creating new tmux session for selected directory
-tns() {
-    if [[ $# -eq 1 ]]; then
-        selected=$1
-    else
-        selected=$(find ~/Documents/Programming ~/.config -mindepth 0 -maxdepth 2 -type d | fzf)
-    fi
-
-    selected_name=$(basename "$selected" | tr . _)
-    tmux_running=$(pgrep tmux)
-
-    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-        tmux new-session -s $selected_name -c $selected
-        exit 0
-    fi
-
-    if ! tmux has-session -t=$selected_name 2> /dev/null; then
-        tmux new-session -ds $selected_name -c $selected
-    fi
-
-    tmux switch-client -t $selected_name
-
-    if [[ -z $TMUX ]]; then
-        tmux attach-session -t $selected_name
-    else
-        tmux switch-client -t $selected_name
-    fi
-}
 
 tmux-sessionizer () {
-    if [[ $# -eq 1 ]]; then
-        selected=$1
-    else
-        selected=$(find ~/work/builds ~/projects ~/ ~/work ~/personal ~/personal/yt -mindepth 1 -maxdepth 1 -type d | fzf)
-    fi
 
-    if [[ -z $selected ]]; then
+    # This stores the output of the command in the variable
+    selected=$(find ~/Documents/Programming ~/.config -mindepth 0 -maxdepth 2 -type d | fzf)
+
+    # If the user exits fzf without selecting anything, exit the script
+    if [[ -z $selected ]] && [[ -v TMUX ]]; then
+        # This exits the tmux window
         exit 0
+    elif [[ -z $selected ]]; then
+        return 0
     fi
 
+    # tr is used to replace the . with _ in the session name because tmux doesn't allow . in session names
     selected_name=$(basename "$selected" | tr . _)
+
+    # Check if tmux is runnign
     tmux_running=$(pgrep tmux)
 
     if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
@@ -89,6 +62,8 @@ tmux-sessionizer () {
         exit 0
     fi
 
+    # If the session is already running, just attach to it. tmux has-session throws an error if the session doesn't exist.
+    # The 2> /dev/null is used to suppress the error message
     if ! tmux has-session -t=$selected_name 2> /dev/null; then
         tmux new-session -ds $selected_name -c $selected
     fi
@@ -96,33 +71,47 @@ tmux-sessionizer () {
     tmux switch-client -t $selected_name
 }
 
-sc() {
+launch-tmux-sessionizer () {
+    # Check if tmux is runnign
+    if [[ -v TMUX ]]; then
+        tmux neww -n sessionizer tmux-sessionizer
+    else
+        tmux-sessionizer
+    fi
+}
+
+source-config () {
     source ~/.zshrc
     tmux source-file ~/.config/tmux/tmux.conf
+    tmux display-message "Configs reloaded"
 }
 
 # Killing selected tmux session
-# tk () {
-#     local sessions
-#     sessions="$(tmux ls|fzf --exit-0 --multi)"  || return $?
-#     local i
-#     for i in "${(f@)sessions}"
-#     do
-#         [[ $i =~ '([^:]*):.*' ]] && {
-#             echo "Killing $match[1]"
-#             tmux kill-session -t "$match[1]"
-#         }
-#     done
-# }
-#
+tmux-kill-session () {
+    local sessions
+    sessions="$(tmux ls|fzf --exit-0 --multi)"  || return $?
+    local i
+    for i in "${(f@)sessions}"
+    do
+        [[ $i =~ '([^:]*):.*' ]] && {
+            echo "Killing $match[1]"
+            tmux kill-session -t "$match[1]"
+        }
+    done
+}
+
 
 # With `read -a` you can get the keycodes of the pressed keys
 # Read `man zshzle` for more information about zle widgets
+zle -N source-config
+bindkey '^z' source-config
 
-# Both approaches are valid
-listFolders () { echo; ls; zle redisplay } 
-zle -N listFolders
-bindkey '^a' listFolders
+zle -N launch-tmux-sessionizer
+bindkey  '^n' launch-tmux-sessionizer
 
-bindkey -s ^f "tmux-sessionizer\n"
+zle -N tmux-find-session
+bindkey '^f' tmux-find-session
+
+zle -N tmux-kill-session
+bindkey '^x' tmux-kill-session
 
