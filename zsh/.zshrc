@@ -5,7 +5,6 @@ setopt nosharehistory
 # Neovim
 alias n='nvim'
 alias nd='nvim .'
-alias vi='nvim'
 alias vim='nvim'
 
 # Git aliases
