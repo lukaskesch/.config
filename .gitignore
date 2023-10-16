@@ -11,4 +11,5 @@
 !tmux/**
 !zsh/**
 !git/**
+!dygma/**
 .DS_Store

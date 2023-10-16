@@ -16,6 +16,7 @@
 [iterm2](https://iterm2.com/)
 
 - `brew install --cask iterm2`
+- Settings > Profiles > General > Command > Send text at start: source ~/.zshrc
 
 ### fzf
 
