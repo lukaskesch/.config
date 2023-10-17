@@ -99,7 +99,6 @@ tmux-kill-session () {
     done
 }
 
-# //TODO: Something overrides the keybingings c-f and c-n
 # With `read -a` you can get the keycodes of the pressed keys
 # Read `man zshzle` for more information about zle widgets
 zle -N source-config
@@ -109,7 +108,7 @@ zle -N launch-tmux-sessionizer
 bindkey  '^n' launch-tmux-sessionizer
 
 zle -N tmux-find-session
-bindkey '^z' tmux-find-session
+bindkey '^f' tmux-find-session
 
 zle -N tmux-kill-session
 bindkey '^x' tmux-kill-session
