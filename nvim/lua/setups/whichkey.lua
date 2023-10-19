@@ -88,8 +88,12 @@ local mappings = {
     ["r"] = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Reformat Code" },
     b = {
         name = "Buffers",
+        c = { "<cmd>ene<CR>", "create buffer" },
+        d = { "<cmd>bd<CR>", "delete buffer" },
         h = { "<cmd>Telescope oldfiles<CR>", "prev. opend" },
-        n = { "<cmd>ene<CR>", "new buffer" },
+        n = { "<cmd>bn<CR>", "next buffer" },
+        p = { "<cmd>bp<CR>", "prev. buffer" },
+        l = { "<cmd>b#<CR>", "last buffer" },
     },
     c = {
         name = "Quickfix",
@@ -140,7 +144,6 @@ local mappings = {
         m = { ":tabmove ", "tab move", silent = false },
         n = { "<cmd>tabnew<CR>", "empty buffer in new tab" },
         o = { "<cmd>tabonly<CR>", "tab only" },
-        t = { "<cmd>ToggleTerm direction=\"tab\" <CR>", "terminal in new tab" },
     },
 }
 
