@@ -114,6 +114,24 @@ local mappings = {
     g = {
         name = "Git",
     },
+    h = {
+        name = "Harpoon",
+        c = { "<cmd>lua require('harpoon.mark').clear_all()<CR>", "clear all marks" },
+        m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "toggle menu" },
+        a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "mark file" },
+        n = { "<cmd>lua require('harpoon.ui').nav_next()<CR>", "nav file" },
+        p = { "<cmd>lua require('harpoon.ui').nav_prev()<CR>", "nav file" },
+        t = { "<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", "nav terminal" },
+        ["1"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", "File 1" },
+        ["2"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", "File 2" },
+        ["3"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", "File 3" },
+        ["4"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", "File 4" },
+        ["5"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<CR>", "File 5" },
+        ["6"] = { "<cmd>lua require('harpoon.ui').nav_file(6)<CR>", "File 6" },
+        ["7"] = { "<cmd>lua require('harpoon.ui').nav_file(7)<CR>", "File 7" },
+        ["8"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<CR>", "File 8" },
+        ["9"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<CR>", "File 9" },
+    },
     s = {
         name = "Search",
         b = { "<cmd>Telescope buffers<CR>", "buffers" },
@@ -162,10 +180,10 @@ vim.keymap.set('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', { desc = '[c
 vim.keymap.set('n', '<leader>gh', '<cmd>Telescope git_bcommits<cr>', { desc = '[h]istory of file' })
 
 
-vim.keymap.set("i", "<C-l>", "copilot#Accept()", {expr=true})
-vim.keymap.set("i", "<C-j>", "copilot#Next()", {expr=true})
-vim.keymap.set("i", "<C-k>", "copilot#Previous()", {expr=true})
-vim.keymap.set("i", "<C-h>", "copilot#Dismiss()", {expr=true})
+vim.keymap.set("i", "<C-l>", "copilot#Accept()", { expr = true })
+vim.keymap.set("i", "<C-j>", "copilot#Next()", { expr = true })
+vim.keymap.set("i", "<C-k>", "copilot#Previous()", { expr = true })
+vim.keymap.set("i", "<C-h>", "copilot#Dismiss()", { expr = true })
 
 vim.keymap.set('t', '<esc>', '<C-\\><C-n>', { silent = true })
 vim.keymap.set('n', '<esc>', '<cmd>ToggleTerm<CR>', { silent = true })
@@ -187,10 +205,10 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 
 -- greatest remaps ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- yank to and past from system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("n", "<leader>p", [["+p]])
 vim.keymap.set("n", "<leader>P", [["+P]])
